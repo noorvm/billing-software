@@ -26,7 +26,7 @@ function Staff() {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/products");
+      const res = await fetch("https://billing-software-xqyb.onrender.com/products");
       if (res.ok) {
         const data = await res.json();
         setProducts(data);
@@ -125,7 +125,7 @@ function Staff() {
     };
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/bills", {
+      const res = await fetch("https://billing-software-xqyb.onrender.com/bills", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

@@ -27,12 +27,12 @@ function Admin({ isMobile = false }) {
   const loadAllData = async () => {
     try {
       const [sumRes, prodRes, staffRes, supRes, billRes, retRes] = await Promise.all([
-        fetch("http://127.0.0.1:8000/reports/summary"),
-        fetch("http://127.0.0.1:8000/products"),
-        fetch("http://127.0.0.1:8000/staff"),
-        fetch("http://127.0.0.1:8000/suppliers"),
-        fetch("http://127.0.0.1:8000/bills"),
-        fetch("http://127.0.0.1:8000/returns"),
+        fetch("https://billing-software-xqyb.onrender.com/reports/summary"),
+        fetch("https://billing-software-xqyb.onrender.com/products"),
+        fetch("https://billing-software-xqyb.onrender.com/staff"),
+        fetch("https://billing-software-xqyb.onrender.com/suppliers"),
+        fetch("https://billing-software-xqyb.onrender.com/bills"),
+        fetch("https://billing-software-xqyb.onrender.com/returns"),
       ]);
 
       if (sumRes.ok) setSummary(await sumRes.json());
@@ -52,7 +52,7 @@ function Admin({ isMobile = false }) {
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://127.0.0.1:8000/products", {
+    const res = await fetch("https://billing-software-xqyb.onrender.com/products", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -71,14 +71,14 @@ function Admin({ isMobile = false }) {
 
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Delete this product?")) {
-      await fetch(`http://127.0.0.1:8000/products/${id}`, { method: "DELETE" });
+      await fetch(`https://billing-software-xqyb.onrender.com/products/${id}`, { method: "DELETE" });
       loadAllData();
     }
   };
 
   const handleAddStaff = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://127.0.0.1:8000/staff", {
+    const res = await fetch("https://billing-software-xqyb.onrender.com/staff", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newStaff),
@@ -95,14 +95,14 @@ function Admin({ isMobile = false }) {
 
   const handleDeleteStaff = async (id) => {
     if (window.confirm("Remove this staff user?")) {
-      await fetch(`http://127.0.0.1:8000/staff/${id}`, { method: "DELETE" });
+      await fetch(`https://billing-software-xqyb.onrender.com/staff/${id}`, { method: "DELETE" });
       loadAllData();
     }
   };
 
   const handleAddSupplier = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://127.0.0.1:8000/suppliers", {
+    const res = await fetch("https://billing-software-xqyb.onrender.com/suppliers", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newSupplier),
@@ -116,7 +116,7 @@ function Admin({ isMobile = false }) {
 
   const handleProcessReturn = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://127.0.0.1:8000/returns", {
+    const res = await fetch("https://billing-software-xqyb.onrender.com/returns", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
