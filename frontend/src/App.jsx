@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path='/admin' element={<Admin />} />
-        <Route path="/admin" element={<Admin isMobile={false} />} />
+        <Route path="/mobile-admin" element={<Admin isMobile={false} />} />
         <Route path='/staff' element={<Staff />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
