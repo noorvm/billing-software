@@ -14,7 +14,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ----------------- IN-MEMORY STORAGE -----------------
 
 USERS = [
     {"id": 1, "username": "admin", "email": "admin@textile.com", "password": "112233", "usertype": "admin"},
@@ -45,7 +44,6 @@ id_counters = {
     "return": 1
 }
 
-# ----------------- SCHEMAS -----------------
 
 class LoginData(BaseModel):
     username: str
@@ -87,7 +85,7 @@ class ReturnCreate(BaseModel):
     quantity: int
     reason: str
 
-# ----------------- Login -----------------
+
 
 @app.get("/")
 def home():
@@ -230,7 +228,6 @@ def create_bill(bill: BillCreate):
 def get_bills():
     return BILLS
 
-# ----------------- RETURNS -----------------
 
 @app.post("/returns")
 def process_return(ret: ReturnCreate):
@@ -267,3 +264,12 @@ def get_reports():
         "total_products": len(PRODUCTS),
         "low_stock_alerts": [p for p in PRODUCTS if p["stock"] < 10]
     }
+
+def get_current_date():
+    """Return current date."""
+    return datetime.now().strftime("%d-%m-%Y")
+
+
+def calculate_discount(price: float, discount: float):
+    """Calculate discounted price."""
+    return price - (price * discount / 100)
